@@ -4,6 +4,26 @@
 
 I developed ALGO-1557 to recover higher-order relationships from retained measurements, test what data summaries preserve, and certify changes that keep individual and pairwise distributions fixed.
 
+## Run the hybrid example
+
+Clone or download this repository. From its root, run with Python 3.10 or later:
+
+```sh
+python3 hybrid_example.py
+```
+
+The example simulates an ideal three-qubit circuit, `H(A)`, `H(B)`, `CX(A,C)`, `CX(B,C)`. It represents the ideal probabilities as balanced counts. The CPU code uses ALGO-1557 to reconstruct the joint table from parity means and same-observation covariances, then passes a conditional probability to a simple decision rule. No packages or provider account are needed.
+
+With only the one- and two-bit statistics, the host requests more evidence. With the recovered joint table, it predicts `C=1` given `A=1, B=0`. The example checks both results.
+
+To run the same analysis on your own joint observations, supply a JSON object with three-bit outcome strings in `A, B, C` order and nonnegative integer counts. For example, save `{"000": 200, "011": 200, "101": 200, "110": 200}` as `counts.json` and run:
+
+```sh
+python3 hybrid_example.py --counts counts.json
+```
+
+For measured counts the result is empirical. A missing condition requests more evidence, and an even split abstains. A production decision should also account for sample size and measurement uncertainty.
+
 ## What it can do today
 
 ALGO-1557 works with joint probability tables for binary variables. The variables can come from quantum measurements, classical observations, or a model. The source of the data matters and should travel with every result.
@@ -38,4 +58,4 @@ In **Algorith-Red-01**, this is an integration design. **ALGO-1287** is the quan
 
 ## Source availability
 
-The November 3, 2026 source archive has been withdrawn from the current branch while its license notice is reviewed. This README documents the research and its current capabilities. It grants no new software license.
+This repository contains the corrected [ALGO-1557 core and extensions](relational_operations/), the [runnable hybrid example](hybrid_example.py), and [author citation information](CITATION.cff). The historical research datasets and the earlier archive are separate from this source publication. The software is posted without a license grant.

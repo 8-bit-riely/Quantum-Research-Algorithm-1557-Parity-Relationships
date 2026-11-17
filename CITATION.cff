@@ -1,0 +1,8 @@
+cff-version: 1.2.0
+message: "Please identify the algorithm research snapshot dated 2026-11-03 and the original core version 0.1.0a1."
+type: software
+title: "Relational Operations Lab: algorithm research snapshot"
+authors:
+  - family-names: Dionne
+    given-names: Riely
+abstract: "Exact probability-table operations with research extensions for certified feasible support, selective covariance recovery, and rounded empirical-moment reconstruction. Original core version 0.1.0a1; algorithm research snapshot dated 2026-11-03. Bundled data is CC-BY-4.0."
